@@ -1,0 +1,11 @@
+
+.phone input {
+  width: 15rem;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  color: #697079;
+  font-size: 0.8rem;
+  padding: 0.6rem;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
