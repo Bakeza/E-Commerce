@@ -71,26 +71,21 @@ const useCart = () => {
   const removeAllItems = () => {
     dispatch({ type: ACTIONS.REMOVE_ALL_ITEMS });
   };
-  const getItems = () => {
-    dispatch({ type: ACTIONS.GET_ALL_ITEMS });
-  };
-  // { price, productId, quantity }
-  const addProduct = () => {
-    axios
-      .post(`${process.env.REACT_APP_API}/`, {
-        body: {
-          cardItems: [...state.cardItems, action.payload],
-          count: state.count + 1,
-        },
-      })
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        // Handle the error if needed
-        console.error(error);
-      });
-  };
+  // const addProduct =(id)=>{
+  //   axios.post(`${process.env.REACR_APP_API}/`, {
+  //     cardItems: [...state.cardItems, action.payload],
+  //     count: state.count + 1,
+  //   })
+  //   .then((response) => {
+  //     // Handle the response if needed
+  //     return response;
+  //   })
+  //   .catch((error) => {
+  //     // Handle the error if needed
+  //     console.error(error);
+  //   });
+  // }
+
   return {
     state,
     addToCart,

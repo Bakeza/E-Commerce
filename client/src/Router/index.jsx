@@ -13,6 +13,7 @@ const Item = lazy(() => import("../Pages/Item"));
 const Cart = lazy(() => import("../Pages/Cart"));
 const WishList = lazy(()=> import('../Pages/WishList'))
 const Profile = lazy(()=> import('../Pages/Profile'))
+const ControllPanel = lazy(()=> import('../Pages/ControllPanel'))
 const Signup = lazy(() => import("../Pages/Register"));
 const Login = lazy(() => import("../Pages/SignIn"));
 
@@ -25,7 +26,8 @@ export const PATHS = {
   SIGNUP: "/signup",
   LOGIN: "/login",
   WISHLIST: "/wishList",
-  PROFILE: "/profile"
+  PROFILE: "/profile",
+  CONTROlPANEl :"/controlPanel"
 };
 
 export function Router() {
@@ -66,6 +68,7 @@ export function Auth() {
         <Route path={PATHS.WISHLIST} element={<WishList />} />
         <Route path={PATHS.CART} element={<Cart />} />
         <Route path={PATHS.PROFILE} element={<Profile />} />
+        <Route path={PATHS.CONTROlPANEl} element={<ControllPanel />} />
       </Routes>
       <Subscribe />
       <Footer />

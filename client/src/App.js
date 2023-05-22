@@ -28,12 +28,16 @@ function App() {
         <themeContext.Provider value={[theme, setTheme]}>
           <AuthContextProvider>
             <CartProvider>
+              {/* <UserProvider> */}
+
               <div className="App">
                 <GlobalStyle />
                 <Suspense fallback={<div className="spinner" />}>
                   <Router />
                 </Suspense>
               </div>
+              {/* </UserProvider> */}
+
             </CartProvider>
           </AuthContextProvider>
         </themeContext.Provider>
