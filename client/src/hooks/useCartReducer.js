@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+import axios from "axios";
 
 const initialState = {
   count: parseInt(localStorage.getItem("count")) || 0,
@@ -15,10 +16,10 @@ const Reduce = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TO_CART:
       return {
-        ...state,
-        cardItems: [...state.cardItems, action.payload],
-        count: state.count + 1,
-      };
+      ...state,
+      cardItems: [...state.cardItems, action.payload],
+      count: state.count + 1,
+      }
     case ACTIONS.REMOVE_FROM_CART:
       return {
         ...state,
@@ -65,6 +66,20 @@ const useCart = () => {
     dispatch({ type: ACTIONS.REMOVE_ALL_ITEMS });
   };
 
+  // const addProduct =(id)=>{
+    // axios.post(`${process.env.REACR_APP_API}/`, {
+    //   cardItems: [...state.cardItems, action.payload],
+    //   count: state.count + 1,
+    // })
+    // .then((response) => {
+    //   // Handle the response if needed
+    //   return response;
+    // })
+    // .catch((error) => {
+    //   // Handle the error if needed
+    //   console.error(error);
+    // });
+  // }
   return {
     state,
     addToCart,
