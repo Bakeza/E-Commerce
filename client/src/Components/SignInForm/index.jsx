@@ -47,15 +47,17 @@ export default function SignInForm() {
       });
       await SignIn(Data);
 
-      const res = await axios.post(`${API_URL}/users/login`, {
-        email: Data.email,
-        password: Data.password,
-      });
-
-      if (res) {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/auth/sign-in`,
+        {
+          email: Data.email,
+          password: Data.password,
+        }
+      );
+      if (data.statusCode) {
         setIsAuthorized(true);
-        setToken(res.data.token);
-        localStorage.setItem("token", res.data.token);
+        setToken(data.data.token);
+        localStorage.setItem("token", data.data.token);
       }
     } catch (error) {
       console.log(error);
@@ -72,6 +74,7 @@ export default function SignInForm() {
       });
     }
   };
+
   return (
     <SignForm onSubmit={handelSubmit}>
       <FormTitle>Sign in</FormTitle>
@@ -105,7 +108,7 @@ export default function SignInForm() {
         <FormLabel> Remember me </FormLabel>
       </FlexDiv>
 
-      <RegisterButton title={Data.isLoading?"Loading...":"Log In" }/>
+      <RegisterButton title={Data.isLoading ? "Loading..." : "Log In"} />
 
       <Or>
         <hr /> <p>OR</p> <hr />

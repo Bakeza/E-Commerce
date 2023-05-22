@@ -9,6 +9,7 @@ export const useCartContext = () => {
 
 const CartProvider = ({ children }) => {
   const cart = useCart();
+  
   return (
     <productContext.Provider value={cart}>{children}</productContext.Provider>
   );

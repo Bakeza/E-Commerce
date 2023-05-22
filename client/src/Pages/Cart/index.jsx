@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import CartItems from "../../Components/CartItems";
 import Coupon from "../../Components/Coupon";
@@ -12,10 +12,11 @@ import { SectionTitle } from "../../Sections/Recommended";
 
 export default function Cart() {
   const { state } = useCartContext();
+
   return (
     <>
       <Container>
-      <SectionTitle className="normal">My cart ({state.count})</SectionTitle>
+        <SectionTitle className="normal">My cart ({state.count})</SectionTitle>
         <FlexDiv className="start">
           <CartItems />
           <Coupon />

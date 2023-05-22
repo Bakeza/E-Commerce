@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { ItemP } from "../ItemCard/style";
 import { Information } from "../MayLike";
@@ -12,9 +12,23 @@ import { Cart, CartButton, Item } from "./style";
 import { useCartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../Router";
+import axios from "axios";
 
 export default function CartItems() {
   const { state, removeFromCart, removeAllItems } = useCartContext();
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    const cart = async () => {
+      const res = await axios.get(`${process.env.REACT_APP_API}/cart/`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res);
+    };
+    cart();
+  }, []);
 
   return (
     <>
