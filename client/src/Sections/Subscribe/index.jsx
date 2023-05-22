@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import SubscribeForm from "../../Components/SubscribeForm";
+import { useLocation } from "react-router-dom";
 
 const SubscribeSec = styled.div`
   display: flex;
@@ -22,13 +23,19 @@ const SubsBody = styled.p`
   color: #606060;
 `;
 export default function Subscribe() {
+  const { pathname } = useLocation();
+  const currnetUser =pathname.includes("/profile");
   return (
-    <SubscribeSec>
+    <>
+    {!currnetUser &&
+      <SubscribeSec>
       <SubsTitle>Subscribe on our newsletter</SubsTitle>
       <SubsBody>
-        Get daily news on upcoming offers from many suppliers all over the world
+      Get daily news on upcoming offers from many suppliers all over the world
       </SubsBody>
       <SubscribeForm />
-    </SubscribeSec>
+      </SubscribeSec>
+    }
+    </>
   );
 }

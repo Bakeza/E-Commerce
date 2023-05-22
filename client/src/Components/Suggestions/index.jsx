@@ -11,6 +11,9 @@ import { RelatedDiv } from "../Related";
 
 import { relatedProducts } from "../../mock/data";
 
+import { MdFavorite } from "react-icons/md"
+import FavIcon from "../FavIcon";
+
 const SuggestionsDiv = styled(RelatedDiv)`
   & img {
     height: 90%;
@@ -22,13 +25,17 @@ export const MoveButton = styled.button`
   width: 50%;
   padding: 0.5rem;
   outline: none;
-  background-color: ${(props) => props.theme.pallet.mainBackdround};
+  background-color: white;
   color: ${(props) => props.theme.pallet.primary};
   border: 1px solid ${(props) => props.theme.pallet.Lines};
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   text-align: center;
+  cursor: pointer;
+  :hover{
+    background-color: #eeeeee;
+  }
 `;
 export default function Suggestions() {
   return (
@@ -38,7 +45,10 @@ export default function Suggestions() {
         {relatedProducts.map((product) => (
           <div key={product.id}>
             <img src={product.img} alt="itemImg" />
+            <FlexDiv className="justify">
             <ItemP className="elecPrice">{product.price}</ItemP>
+            <FavIcon related />
+            </FlexDiv>
             <Information className="desc">{product.title}</Information>
             <MoveButton>
               <BsCart3 /> Move to cart

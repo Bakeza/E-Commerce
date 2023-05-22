@@ -1,21 +1,21 @@
 {
-  "name": "ecommerce",
+  "name": "E-Commerce",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "dev": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salsabeelomar/UniProject.git"
+    "url": "git+https://github.com/Bakeza/E-Commerce.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/salsabeelomar/UniProject/issues"
+    "url": "https://https://github.com/Bakeza/E-Commerce/issues"
   },
-  "homepage": "https://github.com/salsabeelomar/UniProject#readme",
+  "homepage": "https://github.com/Bakeza/E-Commerce#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",

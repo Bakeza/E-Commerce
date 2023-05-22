@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { SearchForm, SearcgInput, Dropdown, SearchButton } from "./style";
+import { useLocation } from "react-router-dom";
 
 export default function Search() {
   const [value, setValue] = useState("");
+  const { pathname } = useLocation();
+  const currnetUser = pathname.includes("/cart")||pathname.includes("/wishList")||pathname.includes("/profile");
+
   const handleChange = (e) => {
     setValue(e.target.value);
   };
@@ -10,7 +14,8 @@ export default function Search() {
     e.preventDefault();
   };
   return (
-    <SearchForm onSubmit={handleSubmit}>
+    <>{!currnetUser &&
+      <SearchForm onSubmit={handleSubmit}>
       <SearcgInput placeholder="Search" value={value} onChange={handleChange} />
       <Dropdown>
         <option value="All">All Category</option>
@@ -21,5 +26,7 @@ export default function Search() {
       </Dropdown>
       <SearchButton>Search</SearchButton>
     </SearchForm>
+    }
+    </>
   );
 }

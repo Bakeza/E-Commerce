@@ -11,9 +11,10 @@ import cartSrc from "../../Assetse/cart.png";
 import Toggle from "../Toggle";
 import { Link } from "react-router-dom";
 import LogoutButt from "../LogoutButt";
+import { PATHS } from "../../Router";
 
 export const Navigation = styled.nav`
-  min-height: 3rem;
+  min-height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,26 +53,28 @@ export default function NavBar() {
           <Toggle />
         </NavItem>
         <NavItem>
-          <Link to="/">
-            <img src={profileSrc} alt="profile" />
+          <Link to={PATHS.ITEM}>
+            <img src={MessageSrc} alt="Messgae" />
           </Link>
-          <NavName>Profile</NavName>
+            <NavName>Message</NavName>
         </NavItem>
         <NavItem>
-          <img src={MessageSrc} alt="Messgae" />
-          <NavName>Message</NavName>
-        </NavItem>
-        <NavItem>
-          <Link to="/item">
+          <Link to={PATHS.WISHLIST}>
             <img src={HeartSrc} alt="Heart" />
           </Link>
-          <NavName>Orders</NavName>
+            <NavName>WishList</NavName>
         </NavItem>
         <NavItem>
-          <Link to="/cart">
+          <Link to={PATHS.CART}>
             <img src={cartSrc} alt="cart" />
           </Link>
           <NavName>My cart</NavName>
+        </NavItem>
+        <NavItem>
+          <Link to={PATHS.PROFILE}>
+            <img src={profileSrc} alt="profile" />
+          </Link>
+          <NavName>Profile</NavName>
         </NavItem>
         <NavItem>
           <LogoutButt />
