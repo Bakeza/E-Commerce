@@ -10,16 +10,17 @@ const ACTIONS = {
   ADD_TO_CART: "addToCart",
   REMOVE_FROM_CART: "removeFromCart",
   REMOVE_ALL_ITEMS: "removeAllItems",
+  GET_ALL_ITEMS: "getItems",
 };
 
 const Reduce = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TO_CART:
       return {
-      ...state,
-      cardItems: [...state.cardItems, action.payload],
-      count: state.count + 1,
-      }
+        ...state,
+        cardItems: [...state.cardItems, action.payload],
+        count: state.count + 1,
+      };
     case ACTIONS.REMOVE_FROM_CART:
       return {
         ...state,
@@ -30,6 +31,11 @@ const Reduce = (state, action) => {
       };
 
     case ACTIONS.REMOVE_ALL_ITEMS:
+      return {
+        count: 0,
+        cardItems: [],
+      };
+    case ACTIONS.GET_ALL_ITEMS:
       return {
         count: 0,
         cardItems: [],
@@ -65,7 +71,6 @@ const useCart = () => {
   const removeAllItems = () => {
     dispatch({ type: ACTIONS.REMOVE_ALL_ITEMS });
   };
-
   // const addProduct =(id)=>{
   //   axios.post(`${process.env.REACR_APP_API}/`, {
   //     cardItems: [...state.cardItems, action.payload],
@@ -80,11 +85,13 @@ const useCart = () => {
   //     console.error(error);
   //   });
   // }
+
   return {
     state,
     addToCart,
     removeFromCart,
     removeAllItems,
+    getItems,
   };
 };
 

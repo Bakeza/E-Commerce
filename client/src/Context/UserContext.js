@@ -10,17 +10,17 @@ export const useUserContext = () => {
 const UserProvider = ({ children }) => {
   const { userData, setUserData } = useContext(UserContext);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACR_APP_API}/`)
-      .then((response) => {
-        const { name, email, cart, favorite } = response.data;
-        setUserData({ name, email, cart, favorite });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACR_APP_API}/`) // Replace with the actual backend API endpoint to fetch user data
+  //     .then((response) => {
+  //       const { name, email, cart, favorite } = response.data;
+  //       setUserData({ name, email, cart, favorite });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   return (
     <UserContext.Provider value={userData}>{children}</UserContext.Provider>
