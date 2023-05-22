@@ -20,7 +20,7 @@ export const Country = styled.img`
 
 export default function Header() {
   const { pathname } = useLocation();
-  const currnetUser = pathname.includes("/cart")||pathname.includes("/profile");
+  const currnetUser = pathname.includes("/cart")||pathname.includes("/profile")||pathname.includes("/controlPanel");
 
   return (
     <>

@@ -67,18 +67,18 @@ const useCart = () => {
   };
 
   // const addProduct =(id)=>{
-    // axios.post(`${process.env.REACR_APP_API}/`, {
-    //   cardItems: [...state.cardItems, action.payload],
-    //   count: state.count + 1,
-    // })
-    // .then((response) => {
-    //   // Handle the response if needed
-    //   return response;
-    // })
-    // .catch((error) => {
-    //   // Handle the error if needed
-    //   console.error(error);
-    // });
+  //   axios.post(`${process.env.REACR_APP_API}/`, {
+  //     cardItems: [...state.cardItems, action.payload],
+  //     count: state.count + 1,
+  //   })
+  //   .then((response) => {
+  //     // Handle the response if needed
+  //     return response;
+  //   })
+  //   .catch((error) => {
+  //     // Handle the error if needed
+  //     console.error(error);
+  //   });
   // }
   return {
     state,

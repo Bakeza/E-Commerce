@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 // import { API_URL } from "./../../config/api";
 
 import { DataItem, InfoConatiner, ProfileContainer } from "./style";
 import Avatar from "react-avatar";
+import { Link } from "react-router-dom";
+import { PATHS } from "../../Router";
+import { AiOutlineArrowRight } from 'react-icons/ai'
 
-
-export default class Profile extends Component {
-  state = {
-    userName: "xsasxax",
-    email: "",
-    admin: "",
-    isLoading: false,
-  };
+  export default function Profile() {
+    const[userData,setUserData] =useState({
+      userName: "xsasxax",
+      email: "",
+      admin: "",
+      isLoading: false,
+  })
 
   // async componentDidMount() {
   //   const token = localStorage.getItem("token");
@@ -29,8 +31,6 @@ export default class Profile extends Component {
   //     isLoading: false,
   //   });
   // }
-
-  render() {
     return (
       <>
         <ProfileContainer>
@@ -40,19 +40,19 @@ export default class Profile extends Component {
             size="100"
             round={true}
           />
-          <h1>{this.state.userName}s Profile</h1>
-          {this.state.isLoading ? (
+          <h1>{userData.userName}s Profile</h1>
+          {userData.isLoading ? (
             "Loading..."
           ) : (
             <InfoConatiner>
               <p>Name:</p>
-              <DataItem>{this.state.userName}</DataItem>
+              <DataItem>{userData.userName}</DataItem>
               <p>Email:</p>
-              <DataItem>{this.state.email}</DataItem>
+              <DataItem>{userData.email}</DataItem>
+              <Link to={PATHS.CONTROlPANEl}>Show control panel <AiOutlineArrowRight /> </Link>
             </InfoConatiner>
           )}
         </ProfileContainer>
       </>
     );
-  }
 }

@@ -30,14 +30,14 @@ function App() {
         <themeContext.Provider value={[theme, setTheme]}>
           <AuthContextProvider>
             <CartProvider>
-              <UserProvider>
+              {/* <UserProvider> */}
               <div className="App">
                 <GlobalStyle />
                 <Suspense fallback={<div className="spinner" />}>
                   <Router />
                 </Suspense>
               </div>
-              </UserProvider>
+              {/* </UserProvider> */}
             </CartProvider>
           </AuthContextProvider>
         </themeContext.Provider>
