@@ -12,6 +12,7 @@ import { AuthContextProvider } from "./Context/authContext";
 import { themeContext } from "./Context/ThemeContext";
 import CartProvider from "./Context/CartContext";
 import ErrorBoundary from "./Components/ErrorBoundary";
+import UserProvider from "./Context/UserContext";
 
 function App() {
   const [theme, setTheme] = useState(lightTheme);
@@ -28,12 +29,14 @@ function App() {
         <themeContext.Provider value={[theme, setTheme]}>
           <AuthContextProvider>
             <CartProvider>
+              <UserProvider>
               <div className="App">
                 <GlobalStyle />
                 <Suspense fallback={<div className="spinner" />}>
                   <Router />
                 </Suspense>
               </div>
+              </UserProvider>
             </CartProvider>
           </AuthContextProvider>
         </themeContext.Provider>
