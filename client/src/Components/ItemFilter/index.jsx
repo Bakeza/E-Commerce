@@ -38,7 +38,7 @@ const Featured = styled.div`
   }
 `;
 const IconDIV = styled.div`
-  font-size: 1.3rem;
+  font-size: 1rem;
   width: 50%;
   height: 100%;
   display: flex;
@@ -48,7 +48,7 @@ const IconDIV = styled.div`
   border-radius: 0.5rem 0 0 0.5rem;
   &.right {
     border: none;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-radius: 0 0.5rem 0.5rem 0;
   }
   &.selected {
@@ -81,7 +81,7 @@ export default function ItemFilter(props) {
               navigate("/selectedItems");
             }}
           >
-            <AiFillAppstore />
+          <FaBars />
           </IconDIV>
           <IconDIV
             className={props.electronic ? "selected right" : "right"}
@@ -89,7 +89,7 @@ export default function ItemFilter(props) {
               navigate("/electronics");
             }}
           >
-            <FaBars />
+            <AiFillAppstore />
           </IconDIV>
         </Featured>
       </FlexDiv>

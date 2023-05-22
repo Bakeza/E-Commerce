@@ -11,6 +11,8 @@ const SelectedItems = lazy(() => import("../Pages/SelectedItems"));
 const Electronics = lazy(() => import("../Pages/Electronics"));
 const Item = lazy(() => import("../Pages/Item"));
 const Cart = lazy(() => import("../Pages/Cart"));
+const WishList = lazy(()=> import('../Pages/WishList'))
+const Profile = lazy(()=> import('../Pages/Profile'))
 const Signup = lazy(() => import("../Pages/Register"));
 const Login = lazy(() => import("../Pages/SignIn"));
 
@@ -22,6 +24,8 @@ export const PATHS = {
   CART: "/cart",
   SIGNUP: "/signup",
   LOGIN: "/login",
+  WISHLIST: "/wishList",
+  PROFILE: "/profile"
 };
 
 export function Router() {
@@ -59,7 +63,9 @@ export function Auth() {
         <Route path={PATHS.SELECTEDITEMS} element={<SelectedItems />} />
         <Route path={PATHS.ELECTRONICS} element={<Electronics />} />
         <Route path={PATHS.ITEM} element={<Item />} />
+        <Route path={PATHS.WISHLIST} element={<WishList />} />
         <Route path={PATHS.CART} element={<Cart />} />
+        <Route path={PATHS.PROFILE} element={<Profile />} />
       </Routes>
       <Subscribe />
       <Footer />

@@ -26,6 +26,6 @@ body a {
 `;
 export const Container = styled.div`
   width: 100%;
-  padding: 0 7%;
+  padding: 2% 7%;
   margin: 0 auto;
 `;

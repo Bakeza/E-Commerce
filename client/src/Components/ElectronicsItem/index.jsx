@@ -7,6 +7,7 @@ import { Flex } from "../../Sections/Footer/style";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartDashFill } from "react-icons/bs";
 import { useCartContext } from "../../Context/CartContext";
+import FavIcon from "../FavIcon";
 
 const ItemDiv = styled.div`
   &.main {
@@ -66,7 +67,7 @@ export default function ElectronicsItem({ item }) {
         <CartIcon onClick={handleBuy}>
           {ExistInCart() ? <BsFillCartDashFill /> : <BsFillCartPlusFill />}
         </CartIcon>
-        <Rate className="fav" src={favorite} alt="favoriteIcon" />
+        <FavIcon />
       </ItemDiv>
     </ItemDiv>
   );

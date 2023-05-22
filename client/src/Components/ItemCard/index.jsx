@@ -11,6 +11,7 @@ import { Dot } from "../ShowItem/style";
 import { FlexP, ItemDiv, ItemP, Rate } from "./style";
 
 import { useCartContext } from "../../Context/CartContext";
+import FavIcon from "../FavIcon";
 
 export default function ItemCard({ item }) {
   const {
@@ -44,7 +45,7 @@ export default function ItemCard({ item }) {
       <CartIcon onClick={handleBuy}>
         {ExistInCart() ? <BsFillCartDashFill /> : <BsFillCartPlusFill />}
       </CartIcon>
-      <Rate className="fav" src={favorite} alt="favoriteIcon" />
+      <FavIcon />
     </ItemDiv>
   );
 }
