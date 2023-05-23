@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container } from "../../global/style";
 import { PageLayout ,PageContent } from "./style";
@@ -8,8 +8,18 @@ import SideBar from "../../Components/SideBar";
 import ItemPath from "../../Components/ItemPath";
 import ItemFilter from "../../Components/ItemFilter";
 import { SelectedItem } from "../../mock/data";
+import { Axios } from "axios";
 
 export default function SelectedItems() {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const getProducts = async () => {
+      const {data} = await Axios.get(`${process.env.REACT_APP_API}/product`);
+      setProduct(data.data.product);
+      console.log(data);
+    };
+    getProducts();
+  }, []);
   return (
     <>
       <Container>
@@ -18,7 +28,7 @@ export default function SelectedItems() {
        <SideBar />
        <PageContent>
         <ItemFilter selected />
-        {SelectedItem.map((item)=>(
+        {product.map((item)=>(
           <ItemCard
           key={item.id}
           {...{ item }}

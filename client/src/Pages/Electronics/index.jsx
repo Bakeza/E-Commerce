@@ -9,16 +9,18 @@ import ItemFilter from "../../Components/ItemFilter";
 
 import { RecommendedContaner } from "../../Sections/Recommended";
 import { ElectronicsItems } from "../../mock/data";
-import axios from "axios";
+import Axios from "axios";
 
 export default function Electronics() {
   const [product, setProduct] = useState([]);
+  // const [addProduct,setAddProduct]=useState([]);
   useEffect(() => {
-    const add = async () => {
-      const items = await axios.get(`${process.env.REACT_APP_API}/product`);
-      setProduct(items);
+    const getProducts = async () => {
+      const { data }= await Axios.get(`${process.env.REACT_APP_API}/product`);
+      setProduct(data.data.product);
+      console.log(data);
     };
-    add();
+    getProducts();
   }, []);
   return (
     <>
@@ -30,7 +32,7 @@ export default function Electronics() {
           <PageContent>
             <ItemFilter electronic />
             <RecommendedContaner>
-              {ElectronicsItems.map((item) => (
+              {product.map((item) => (
                 <ElectronicsItem key={item.id} {...{ item }} />
               ))}
             </RecommendedContaner>
