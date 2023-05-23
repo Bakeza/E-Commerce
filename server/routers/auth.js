@@ -8,7 +8,7 @@ const router = Router();
 router.post("/sign-in", errorHandler(authController.signIn));
 router.post("/sign-up", errorHandler(authController.signUp));
 router.post(
-  "/user",
+  "/me",
   authMiddleware,
   errorHandler((req, res, next) => {
     try {

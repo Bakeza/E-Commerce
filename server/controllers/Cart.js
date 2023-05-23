@@ -1,13 +1,27 @@
 const cartModel = require("../models/Cart");
 const CustomError = require("../helpers/CustomError");
+const productModel = require("../models/Product");
 class Cart {
   async getCartItems(req, res, next) {
     cartModel
       .getCartItems(req.user._id)
-      .then((data) => res.json(data))
-      .catch((err) =>
-        next(new CustomError(500, err.message && "Internal Server Error"))
-      );
+      .then(async (data) => {
+        const cart = [];
+        for (let i = 0; i < data.data[0].cartItems.length; i++) {
+          const item = await productModel.getProductById(
+            data.data[0].cartItems[i].productId
+          );
+          cart.push(item);
+        }
+        res.json({
+          statusCode: 200,
+          data: cart,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        next(new CustomError(500, err.message && "Internal Server Error"));
+      });
   }
   async addToCart(req, res, next) {
     // {cartItem : { price :150  , productId: ,quantity :15 }}

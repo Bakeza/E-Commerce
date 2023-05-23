@@ -20,13 +20,14 @@ export default function CartItems() {
 
   useEffect(() => {
     const cart = async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/cart/`, {
+      const res= await axios.get(`${process.env.REACT_APP_API}/cart/`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
-      setItems(data.data);
+      setItems(res.data.data);
+      console.log("resssssss",res.data.data);
     };
     cart();
   }, []);
@@ -36,19 +37,19 @@ export default function CartItems() {
       <Cart>
         {!state.cardItems.length && <h3>Your shopping bag is empty</h3>}
 
-        {items?.cardItems?.map((item) => (
-          <Item key={item.id}>
+        {items?.map((item) => (
+          <Item key={item._id}>
             <FlexDiv>
-              <img src={item.src} alt="item" />
+              <img src={item.images} alt="item" />
               <Div className="cart">
                 <h5>{item.name}</h5>
                 <Information className="desc">{item.description}</Information>
                 <FlexDiv>
                   <CartButton
                     remove
-                    onClick={() => {
-                      removeFromCart(item.id);
-                    }}
+                    // onClick={() => {
+                    //   removeFromCart(item._id);
+                    // }}
                   >
                     Remove
                   </CartButton>
@@ -71,7 +72,6 @@ export default function CartItems() {
               to={PATHS.SELECTEDITEMS}
               style={{ color: "white", cursor: "pointer" }}
             >
-              {" "}
               <RxArrowLeft /> Back to shop
             </Link>
           </CartButton>
