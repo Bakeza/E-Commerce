@@ -17,18 +17,10 @@ class Cart {
           .collection("carts")
           .find({ userId })
           .toArray();
-        const cart = [];
-        console.log(cartItems);
-        // for (let i = 0; i < cartItems[0].cartItems.length; i++) {
-        //   const item = await productModel.getProductById(
-        //     cartItems[0].favoriteItems[i]
-        //   );
-        //   cart.push(item);
-        // }
-        // return {
-        //   statusCode: 200,
-        //   data: cart,
-        // };
+        return {
+          statusCode: 200,
+          data: cartItems,
+        };
       } catch (err) {
         console.log(err);
         return new CustomError(400, err);

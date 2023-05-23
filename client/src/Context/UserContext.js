@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
           },
         }
       );
+
       setUserData(data.data.user);
     };
     getUserData();
