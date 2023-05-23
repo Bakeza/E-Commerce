@@ -24,7 +24,7 @@ const SubsBody = styled.p`
 `;
 export default function Subscribe() {
   const { pathname } = useLocation();
-  const currnetUser =pathname.includes("/profile");
+  const currnetUser = pathname.includes("/profile")||pathname.includes("/controlPanel");
   return (
     <>
     {!currnetUser &&

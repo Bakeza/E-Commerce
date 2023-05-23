@@ -13,6 +13,7 @@ const Item = lazy(() => import("../Pages/Item"));
 const Cart = lazy(() => import("../Pages/Cart"));
 const WishList = lazy(() => import("../Pages/WishList"));
 const Profile = lazy(() => import("../Pages/Profile"));
+const ControllPanel = lazy(() => import("../Pages/ControllPanel"));
 const Signup = lazy(() => import("../Pages/Register"));
 const Login = lazy(() => import("../Pages/SignIn"));
 
@@ -26,10 +27,12 @@ export const PATHS = {
   LOGIN: "/login",
   WISHLIST: "/wishList",
   PROFILE: "/profile",
+  CONTROlPANEl: "/controlPanel",
 };
 
 export function Router() {
   const { isAuthorized, setIsAuthorized } = useAuthContext();
+  console.log("isAuthorizeddd", isAuthorized);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -65,6 +68,7 @@ export function Auth() {
         <Route path={PATHS.WISHLIST} element={<WishList />} />
         <Route path={PATHS.CART} element={<Cart />} />
         <Route path={PATHS.PROFILE} element={<Profile />} />
+        <Route path={PATHS.CONTROlPANEl} element={<ControllPanel />} />
       </Routes>
       <Subscribe />
       <Footer />
