@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import favorite from "../../Assetse/favorite.png";
 import { ItemP, Rate } from "../ItemCard/style";
 import { Flex } from "../../Sections/Footer/style";
@@ -8,6 +7,7 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import { BsFillCartDashFill } from "react-icons/bs";
 import { useCartContext } from "../../Context/CartContext";
 import FavIcon from "../FavIcon";
+import { Axios } from "axios";
 
 const ItemDiv = styled.div`
   &.main {
@@ -49,18 +49,15 @@ export default function ElectronicsItem({ item }) {
   const handleBuy = () => {
     ExistInCart() ? removeFromCart(item.id) : addToCart(item);
   };
+  
 
   return (
     <ItemDiv className="main">
-      <Rate className="center" src={item.src} alt="itemImage" />
+      <Rate className="center" src={item.images} alt="itemImage" />
       <ItemDiv className="info">
         <div>
           <Flex>
             <ItemP className="elecPrice">{item.price}</ItemP>
-          </Flex>
-          <Flex>
-            <Rate src={item.rate} alt="rate" />
-            <ItemP className="rate"> 7.5</ItemP>
           </Flex>
           <ItemP className="elect">{item.name}</ItemP>
         </div>
