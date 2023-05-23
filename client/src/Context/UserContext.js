@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
 
   // useEffect(() => {
   //   axios
-  //     .get(`${process.env.REACR_APP_API}/`) // Replace with the actual backend API endpoint to fetch user data
+  //     .get(`${process.env.REACR_APP_API}/`) 
   //     .then((response) => {
   //       const { name, email, cart, favorite } = response.data;
   //       setUserData({ name, email, cart, favorite });
