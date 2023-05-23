@@ -20,13 +20,14 @@ export default function CartItems() {
 
   useEffect(() => {
     const cart = async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/cart/`, {
+      const res= await axios.get(`${process.env.REACT_APP_API}/cart/`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
-      setItems(data.data);
+      console.log(res);
+      // setItems(data);
     };
     cart();
   }, []);
