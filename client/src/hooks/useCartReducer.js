@@ -63,8 +63,17 @@ const useCart = () => {
     localStorage.setItem("count", state.count);
   }, [state]);
 
-  const addToCart = (product) =>
-    dispatch({ type: ACTIONS.ADD_TO_CART, payload: product });
+  const addToCart = (productId) => {
+    return (dispatch) => {
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: productId });
+      axios
+        .post(`${process.env.REACT_APP_API}`, {
+          productId: "646b06a3a0d49b13909720f5",
+        })
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
+    };
+  };
   const removeFromCart = (productId) =>
     dispatch({ type: ACTIONS.REMOVE_FROM_CART, payload: productId });
 
@@ -73,23 +82,6 @@ const useCart = () => {
   };
   const getItems = () => {
     dispatch({ type: ACTIONS.GET_ALL_ITEMS });
-  };
-  // { price, productId, quantity }
-  const addProduct = () => {
-    axios
-      .post(`${process.env.REACT_APP_API}/`, {
-        body: {
-          cardItems: [...state.cardItems, action.payload],
-          count: state.count + 1,
-        },
-      })
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        // Handle the error if needed
-        console.error(error);
-      });
   };
   return {
     state,

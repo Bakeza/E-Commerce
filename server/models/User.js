@@ -14,12 +14,6 @@ class User {
   }
 
   static #generateToken(user) {
-    // const payload = {
-    //   sub: user._id,
-    //   iat: Date.now(),
-    // };
-    // console.log(payload, "ooo");
-
     return jwt.sign(user, process.env.SECRET_KEY);
   }
   async getUserById(id) {

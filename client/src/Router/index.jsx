@@ -11,8 +11,8 @@ const SelectedItems = lazy(() => import("../Pages/SelectedItems"));
 const Electronics = lazy(() => import("../Pages/Electronics"));
 const Item = lazy(() => import("../Pages/Item"));
 const Cart = lazy(() => import("../Pages/Cart"));
-const WishList = lazy(()=> import('../Pages/WishList'))
-const Profile = lazy(()=> import('../Pages/Profile'))
+const WishList = lazy(() => import("../Pages/WishList"));
+const Profile = lazy(() => import("../Pages/Profile"));
 const Signup = lazy(() => import("../Pages/Register"));
 const Login = lazy(() => import("../Pages/SignIn"));
 
@@ -25,18 +25,17 @@ export const PATHS = {
   SIGNUP: "/signup",
   LOGIN: "/login",
   WISHLIST: "/wishList",
-  PROFILE: "/profile"
+  PROFILE: "/profile",
 };
 
 export function Router() {
   const { isAuthorized, setIsAuthorized } = useAuthContext();
-  console.log("isAuthorizeddd", isAuthorized);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthorized(true);
     }
-  },[setIsAuthorized])
+  }, [setIsAuthorized]);
 
   return <>{isAuthorized ? <Auth /> : <NotAuth />}</>;
 }
