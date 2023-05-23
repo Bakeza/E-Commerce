@@ -6,15 +6,15 @@ import { DataItem, InfoConatiner, ProfileContainer } from "./style";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../Router";
-import { AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineArrowRight } from "react-icons/ai";
 
-  export default function Profile() {
-    const[userData,setUserData] =useState({
-      userName: "xsasxax",
-      email: "",
-      admin: "",
-      isLoading: false,
-  })
+export default function Profile() {
+  const [userData, setUserData] = useState({
+    userName: "xsasxax",
+    email: "",
+    admin: "",
+    isLoading: false,
+  });
 
   // async componentDidMount() {
   //   const token = localStorage.getItem("token");
@@ -31,28 +31,25 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
   //     isLoading: false,
   //   });
   // }
-    return (
-      <>
-        <ProfileContainer>
-          <Avatar
-            name="Foo Bar"
-            color="#0d6efd"
-            size="100"
-            round={true}
-          />
-          <h1>{userData.userName}s Profile</h1>
-          {userData.isLoading ? (
-            "Loading..."
-          ) : (
-            <InfoConatiner>
-              <p>Name:</p>
-              <DataItem>{userData.userName}</DataItem>
-              <p>Email:</p>
-              <DataItem>{userData.email}</DataItem>
-              <Link to={PATHS.CONTROlPANEl}>Show control panel <AiOutlineArrowRight /> </Link>
-            </InfoConatiner>
-          )}
-        </ProfileContainer>
-      </>
-    );
+  return (
+    <>
+      <ProfileContainer>
+        <Avatar name="Foo Bar" color="#0d6efd" size="100" round={true} />
+        <h1>{userData.userName}s Profile</h1>
+        {userData.isLoading ? (
+          "Loading..."
+        ) : (
+          <InfoConatiner>
+            <p>Name:</p>
+            <DataItem>{userData.userName}</DataItem>
+            <p>Email:</p>
+            <DataItem>{userData.email}</DataItem>
+            <Link to={PATHS.CONTROlPANEl}>
+              Show control panel <AiOutlineArrowRight />{" "}
+            </Link>
+          </InfoConatiner>
+        )}
+      </ProfileContainer>
+    </>
+  );
 }

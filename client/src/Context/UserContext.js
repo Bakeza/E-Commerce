@@ -1,30 +1,13 @@
-import { createContext, useContext, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState } from "react";
 
-const UserContext = createContext(null);
+export const UserContext = createContext(null);
 
-export const useUserContext = () => {
-  return useContext(UserContext);
-};
-
-const UserProvider = ({ children }) => {
-  const { userData, setUserData } = useContext(UserContext);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACR_APP_API}/`) // Replace with the actual backend API endpoint to fetch user data
-  //     .then((response) => {
-  //       const { name, email, cart, favorite } = response.data;
-  //       setUserData({ name, email, cart, favorite });
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+export const UserProvider = ({ children }) => {
+  const [userData, setUserData] = useState({});
 
   return (
-    <UserContext.Provider value={userData}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </UserContext.Provider>
   );
 };
-
-export default UserProvider;
