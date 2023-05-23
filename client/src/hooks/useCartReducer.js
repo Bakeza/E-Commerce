@@ -63,15 +63,30 @@ const useCart = () => {
     localStorage.setItem("count", state.count);
   }, [state]);
 
-  const addToCart = (productId) => {
+  const addToCart = (product) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/cart/add-items`,
+        {
+          cartItem: {
+            productId: product._id,
+            price: parseInt(product.price),
+            quantity: 1,
+          },
+        },
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+
     return (dispatch) => {
-      dispatch({ type: ACTIONS.ADD_TO_CART, payload: productId });
-      axios
-        .post(`${process.env.REACT_APP_API}`, {
-          productId: "646b06a3a0d49b13909720f5",
-        })
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: product });
+      console.log("kkkkkkkkkkkkkkk", product);
     };
   };
   const removeFromCart = (productId) =>

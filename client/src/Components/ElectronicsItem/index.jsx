@@ -44,12 +44,13 @@ export default function ElectronicsItem({ item }) {
     removeFromCart,
   } = useCartContext();
 
-  const ExistInCart = () => cardItems.find((product) => product.id === item.id);
+  console.log(cardItems);
+  const ExistInCart = () =>
+    cardItems.find((product) => product._id === item._id);
 
   const handleBuy = () => {
-    ExistInCart() ? removeFromCart(item.id) : addToCart(item);
+    ExistInCart() ? removeFromCart(item._id) : addToCart(item);
   };
-  
 
   return (
     <ItemDiv className="main">

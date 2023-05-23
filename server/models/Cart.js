@@ -11,24 +11,18 @@ class Cart {
     await database.command(cartSchema);
   }
   async getCartItems(userId) {
-    dbConnection.connectDB(async (database) => {
+    return dbConnection.connectDB(async (database) => {
       try {
         const cartItems = await database
           .collection("carts")
           .find({ userId })
           .toArray();
-        const cart = [];
-        for (let i = 0; i < cartItems[0].cartItems.length; i++) {
-          const item = await productModel.getProductById(
-            cartItems[0].favoriteItems[i]
-          );
-          cart.push(item);
-        }
         return {
           statusCode: 200,
           data: cartItems,
         };
       } catch (err) {
+        console.log(err);
         return new CustomError(400, err);
       }
     });

@@ -29,3 +29,22 @@ export const Container = styled.div`
   padding: 2% 7%;
   margin: 0 auto;
 `;
+export const Spinner = styled.div`
+  border: 3rem solid #fff;
+  border-top: 3rem #000 solid;
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+  margin:auto;
+  animation: spin 0.5s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
