@@ -1,9 +1,10 @@
-import { lazy, useEffect } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthContext } from "../Context/authContext";
 import Footer from "../Sections/Footer";
 import Header from "../Sections/Header";
 import Subscribe from "../Sections/Subscribe";
+import axios from "axios";
 
 // pages
 const Home = lazy(() => import("../Pages/Home"));
@@ -32,7 +33,7 @@ export const PATHS = {
 
 export function Router() {
   const { isAuthorized, setIsAuthorized } = useAuthContext();
-  console.log("isAuthorizeddd", isAuthorized);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -56,14 +57,24 @@ export function NotAuth() {
 }
 
 export function Auth() {
+  const [searchValue, setSearchValue] = useState([]);
+  const getProductByName = async (value) => {
+    const {data} = await axios.get(
+      `${process.env.REACT_APP_API}/product/search?name=${value}`
+    );
+    setSearchValue(data.data.product);
+  };
   return (
     <>
-      <Header />
+      <Header getProductByName={getProductByName} />
       <Routes>
         <Route index element={<Home />} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path={PATHS.SELECTEDITEMS} element={<SelectedItems />} />
-        <Route path={PATHS.ELECTRONICS} element={<Electronics />} />
+        <Route
+          path={PATHS.ELECTRONICS}
+          element={<Electronics searchValue={searchValue} />}
+        />
         <Route path={PATHS.ITEM} element={<Item />} />
         <Route path={PATHS.WISHLIST} element={<WishList />} />
         <Route path={PATHS.CART} element={<Cart />} />
