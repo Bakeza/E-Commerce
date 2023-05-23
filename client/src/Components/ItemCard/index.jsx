@@ -27,16 +27,13 @@ export default function ItemCard({ item }) {
   };
   return (
     <ItemDiv>
-      <img src={item.src} alt="itemImage" />
+      <img src={item.images} alt="itemImage" />
       <div>
         <ItemP className="name">{item.name}</ItemP>
         <ItemP className="price">{item.price}</ItemP>
         <FlexP>
           <Rate src={stars} alt="rate" />
           <ItemP className="rate">7.5</ItemP>
-          <Dot />
-          <ItemP className="orders">{item.order}</ItemP>
-          <Dot />
           <ItemP className="free">Free Shipping</ItemP>
         </FlexP>
         <ItemP className="desc">{item.description}</ItemP>
