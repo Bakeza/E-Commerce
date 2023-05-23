@@ -1,8 +1,6 @@
-
 const CustomError = require("../helpers/CustomError");
 const productModel = require("../models/Product");
 class Product {
-
   async addProduct(req, res, next) {
     const { name, description, stock, price, size, images } = req.body;
     productModel

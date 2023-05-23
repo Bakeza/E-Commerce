@@ -36,7 +36,6 @@ export default function ItemCard({ item }) {
           <ItemP className="rate">7.5</ItemP>
           <ItemP className="free">Free Shipping</ItemP>
         </FlexP>
-        <ItemP className="desc">{item.description}</ItemP>
         <ItemP className="view">View details</ItemP>
       </div>
       <CartIcon onClick={handleBuy}>

@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { SearchForm, SearcgInput, Dropdown, SearchButton } from "./style";
 import { useLocation } from "react-router-dom";
-import { Axios } from "axios";
+import axios from "axios";
 
-export default function Search() {
+export default function Search({ getProductByName }) {
   const [value, setValue] = useState("");
   const { pathname } = useLocation();
-  const [searchProduct,setSearch]=useState([]);
-  const currnetUser = pathname.includes("/cart")||pathname.includes("/wishList")||pathname.includes("/profile");
-
-  useEffect(()=>{
-    const getProductByName = async()=>{
-      const product = await Axios.post(`${process.env.REACT_APP_API}/product/search`);
-      setSearch(product);
-      console.log(product);
-    }
-    getProductByName();
-  },[])
+  const currnetUser =
+    pathname.includes("/cart") ||
+    pathname.includes("/wishList") ||
+    pathname.includes("/profile");
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -25,19 +18,30 @@ export default function Search() {
     e.preventDefault();
   };
   return (
-    <>{!currnetUser &&
-      <SearchForm onSubmit={handleSubmit}>
-      <SearcgInput placeholder="Search" value={value} onChange={handleChange} />
-      <Dropdown>
-        <option value="All">All Category</option>
-        <option value="Mobile">Mobile accessory</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Smartphones">Smartphones </option>
-        <option value="tech">Modern tech </option>
-      </Dropdown>
-      <SearchButton>Search</SearchButton>
-    </SearchForm>
-    }
+    <>
+      {!currnetUser && (
+        <SearchForm onSubmit={handleSubmit}>
+          <SearcgInput
+            placeholder="Search"
+            value={value}
+            onChange={handleChange}
+          />
+          <Dropdown>
+            <option value="All">All Category</option>
+            <option value="Mobile">Mobile accessory</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Smartphones">Smartphones </option>
+            <option value="tech">Modern tech </option>
+          </Dropdown>
+          <SearchButton
+            onClick={() => {
+              getProductByName(value);
+            }}
+          >
+            Search
+          </SearchButton>
+        </SearchForm>
+      )}
     </>
   );
 }
