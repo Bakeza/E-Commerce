@@ -17,15 +17,16 @@ import axios from "axios";
 export default function CartItems() {
   const { state, removeFromCart, removeAllItems } = useCartContext();
   const [items, setItems] = useState([]);
+
   useEffect(() => {
     const cart = async () => {
-      const res = await axios.get(`${process.env.REACT_APP_API}/cart/`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_API}/cart/`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
       });
-      console.log(res);
+      setItems(data.data);
     };
     cart();
   }, []);
@@ -35,7 +36,7 @@ export default function CartItems() {
       <Cart>
         {!state.cardItems.length && <h3>Your shopping bag is empty</h3>}
 
-        {state?.cardItems?.map((item) => (
+        {items?.cardItems?.map((item) => (
           <Item key={item.id}>
             <FlexDiv>
               <img src={item.src} alt="item" />

@@ -63,29 +63,26 @@ const useCart = () => {
     localStorage.setItem("count", state.count);
   }, [state]);
 
-  const addToCart = (product) =>
-    dispatch({ type: ACTIONS.ADD_TO_CART, payload: product });
+  const addToCart = (productId) => {
+    return (dispatch) => {
+      dispatch({ type: ACTIONS.ADD_TO_CART, payload: productId });
+      axios
+        .post(`${process.env.REACT_APP_API}`, {
+          productId: "646b06a3a0d49b13909720f5",
+        })
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
+    };
+  };
   const removeFromCart = (productId) =>
     dispatch({ type: ACTIONS.REMOVE_FROM_CART, payload: productId });
 
   const removeAllItems = () => {
     dispatch({ type: ACTIONS.REMOVE_ALL_ITEMS });
   };
-  // const addProduct =(id)=>{
-  //   axios.post(`${process.env.REACR_APP_API}/`, {
-  //     cardItems: [...state.cardItems, action.payload],
-  //     count: state.count + 1,
-  //   })
-  //   .then((response) => {
-  //     // Handle the response if needed
-  //     return response;
-  //   })
-  //   .catch((error) => {
-  //     // Handle the error if needed
-  //     console.error(error);
-  //   });
-  // }
-
+  const getItems = () => {
+    dispatch({ type: ACTIONS.GET_ALL_ITEMS });
+  };
   return {
     state,
     addToCart,

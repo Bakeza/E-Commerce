@@ -11,9 +11,9 @@ const SelectedItems = lazy(() => import("../Pages/SelectedItems"));
 const Electronics = lazy(() => import("../Pages/Electronics"));
 const Item = lazy(() => import("../Pages/Item"));
 const Cart = lazy(() => import("../Pages/Cart"));
-const WishList = lazy(()=> import('../Pages/WishList'))
-const Profile = lazy(()=> import('../Pages/Profile'))
-const ControllPanel = lazy(()=> import('../Pages/ControllPanel'))
+const WishList = lazy(() => import("../Pages/WishList"));
+const Profile = lazy(() => import("../Pages/Profile"));
+const ControllPanel = lazy(() => import("../Pages/ControllPanel"));
 const Signup = lazy(() => import("../Pages/Register"));
 const Login = lazy(() => import("../Pages/SignIn"));
 
@@ -27,7 +27,7 @@ export const PATHS = {
   LOGIN: "/login",
   WISHLIST: "/wishList",
   PROFILE: "/profile",
-  CONTROlPANEl :"/controlPanel"
+  CONTROlPANEl: "/controlPanel",
 };
 
 export function Router() {
@@ -38,7 +38,7 @@ export function Router() {
     if (token) {
       setIsAuthorized(true);
     }
-  },[setIsAuthorized])
+  }, [setIsAuthorized]);
 
   return <>{isAuthorized ? <Auth /> : <NotAuth />}</>;
 }

@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import PhoneInput from "react-phone-number-input";
+import React, { useContext, useState } from "react";
 import "react-phone-number-input/style.css";
 import styled from "styled-components";
 import RegisterButton from "../RegisterButton";
@@ -15,8 +13,8 @@ import {
 import { RegisterSchema } from "../../Validation/Register";
 import { PATHS } from "../../Router";
 import axios from "axios";
-import { API_URL } from "../../config/api";
 import { useAuthContext } from "../../Context/authContext";
+import { UserContext } from "../../Context/UserContext";
 
 // styled component
 const RegForm = styled(SignForm)`
@@ -40,18 +38,17 @@ export const Error = styled.p`
   color: red;
 `;
 export default function RegisterForm() {
+  const { setUserData } = useContext(UserContext);
   const [userData, setuserData] = useState({
     Name: "",
     userName: "",
     email: "",
-    phone: "",
-    country: "",
     password: "",
     RePassword: "",
     checked: false,
     isLoading: false,
   });
-  const { errors, setErrors, setIsAuthorized } = useAuthContext();
+  const { errors, setErrors, setIsAuthorized } = useAuthContext(UserContext);
 
   const handleChange = (e) => {
     setuserData({
@@ -77,18 +74,19 @@ export default function RegisterForm() {
         isLoading: true,
       });
       await RegisterSchema.validate(userData, { abortEarly: false });
-      const res = await axios.post(`${API_URL}/users/signup`, {
-        name: userData.Name,
-        email: userData.email,
-        password: userData.password,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/auth/sign-up`,
+        {
+          name: userData.userName + userData.Name,
+          email: userData.email,
+          password: userData.password,
+        }
+      );
 
-      console.log(res);
-
-      if (res) {
+      if (data.statusCode === 201) {
         setIsAuthorized(true);
-        console.log("valid");
-        localStorage.setItem("token", res.data.token);
+        setUserData(data.data);
+        localStorage.setItem("token", data.data.token);
       }
     } catch (error) {
       setErrors(
@@ -146,14 +144,6 @@ export default function RegisterForm() {
         onChange={handleChange}
       />
       {errors.email && <Error>{errors.email}</Error>}
-      <FormLabel>Phone</FormLabel>
-      <PhoneInput
-        className="phone"
-        name="phone"
-        value={userData.phone}
-        onChange={(value) => setuserData({ phone: value })}
-      />
-      {errors.phone && <Error>{errors.phone}</Error>}
       <FormLabel>Password</FormLabel>
       <Forminput
         type="text"
