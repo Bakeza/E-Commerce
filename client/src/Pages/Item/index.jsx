@@ -7,9 +7,11 @@ import ShowItem from "../../Components/ShowItem";
 import { FlexDiv } from "../../Components/SignInForm/style";
 import { Container } from "../../global/style";
 import Discount from "../../Sections/Discount";
-
+import { useParams } from "react-router-dom";
 
 export default function Item() {
+  const { id } = useParams();
+  console.log(id);
   return (
     <>
       <Container>
@@ -19,8 +21,8 @@ export default function Item() {
           <ItemDescription />
           <MayLike />
         </FlexDiv>
-        <Related/>
-        <Discount/>
+        <Related />
+        <Discount />
       </Container>
     </>
   );

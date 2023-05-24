@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 
 // import { API_URL } from "./../../config/api";
 
@@ -7,16 +7,13 @@ import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../Router";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { UserContext } from "../../Context/UserContext";
 
 export default function Profile() {
-  const [userData, setUserData] = useState({
-    userName: "xsasxax",
-    email: "",
-    admin: "",
-    isLoading: false,
-  });
   const [isAdmin, setIsAdmin] = useState(false);
+  const {userData, setUserData}= useContext(UserContext);
 
+  console.log( " userData",userData);
   useEffect(() => {
     checkIsAdmin();
   }, []);
@@ -27,22 +24,6 @@ export default function Profile() {
       setIsAdmin(false);
     }
   };
-
-  // async componentDidMount() {
-  //   const token = localStorage.getItem("token");
-  //   const res = await axios.get(`${API_URL}/users/profile`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-
-  //   this.setState({
-  //     userName: res.data.name,
-  //     email: res.data.email,
-  //     admin: res.data.isAdmin,
-  //     isLoading: false,
-  //   });
-  // }
   return (
     <>
       <ProfileContainer>
@@ -53,9 +34,9 @@ export default function Profile() {
         ) : (
           <InfoConatiner>
             <p>Name:</p>
-            <DataItem>{userData.userName}</DataItem>
+            <DataItem></DataItem>
             <p>Email:</p>
-            <DataItem>{userData.email}</DataItem>
+            <DataItem></DataItem>
             {isAdmin && (
               <Link to={PATHS.CONTROlPANEl}>
                 Show control panel <AiOutlineArrowRight />
