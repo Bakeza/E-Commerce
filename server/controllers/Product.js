@@ -47,6 +47,17 @@ class Product {
         next(new CustomError(500, error.message && "Internal Server Error"));
       });
   }
+  async getProductById(req, res, next) {
+    console.log("wwwwww",req.query._id);
+    productModel
+    .getProductById(req.query._id)
+    .then((data)=>{
+      res.send(data)
+    })
+    .catch((error) => {
+      next(new CustomError(500, error.message && "Internal Server Error"));
+    });
+  }
 }
 
 const product = new Product();

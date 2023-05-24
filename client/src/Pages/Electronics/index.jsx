@@ -8,7 +8,7 @@ import ItemPath from "../../Components/ItemPath";
 import ItemFilter from "../../Components/ItemFilter";
 
 import { RecommendedContaner } from "../../Sections/Recommended";
-import Axios from "axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Electronics({ searchValue }) {
@@ -33,7 +33,7 @@ export default function Electronics({ searchValue }) {
             <ItemFilter electronic />
             <RecommendedContaner>
               {product.map((item) => (
-                <Link to={`/electronics/${item.id}`}>
+                <Link to={`/electronics/${item._id}`}>
                 <ElectronicsItem key={item.id} {...{ item }} />
                 </Link>
               ))}

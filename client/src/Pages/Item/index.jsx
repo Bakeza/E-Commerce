@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemDescription from "../../Components/ItemDescription";
 import ItemPath from "../../Components/ItemPath";
 import MayLike from "../../Components/MayLike";
@@ -8,18 +8,32 @@ import { FlexDiv } from "../../Components/SignInForm/style";
 import { Container } from "../../global/style";
 import Discount from "../../Sections/Discount";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Item() {
-  const { id } = useParams();
-  console.log(id);
+  const { product, setProduct } = useState([]);
+  const params = useParams();
+  console.log(params.id);
+  const getProductById = async () => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API}/product/${params.id}`
+    );
+  setProduct(data.data.product);
+  };
+  useEffect(() => {
+    getProductById();
+  }, []);
+
   return (
     <>
       <Container>
         <ItemPath />
-        <ShowItem />
+        {product && product.map((item) => (
+          <ShowItem key={item} {...{ item }} />
+        ))}
         <FlexDiv className="start">
-          <ItemDescription />
-          <MayLike />
+        <ItemDescription />
+        <MayLike />
         </FlexDiv>
         <Related />
         <Discount />

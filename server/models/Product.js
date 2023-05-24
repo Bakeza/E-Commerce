@@ -107,16 +107,14 @@ class Product {
       try {
         const productItem = await database
           .collection("products")
-          .findOne({ _id: productId });
+          .find({ _id: productId }).toArray();
         return productItem;
       } catch (error) {
         throw new CustomError(400, "bad Request ");
       }
     });
   }
-  async getAllproducts(){
-
-  }
+  
 }
 
 const productModel = new Product();

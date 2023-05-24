@@ -33,26 +33,18 @@ import germany from "../../Assetse/germany.png";
 import { Option } from "../SideBar/style";
 import { ItemP, Rate } from "../ItemCard/style";
 
-function ShowItem() {
+function ShowItem({ item }) {
   return (
     <ShowDiv>
       <InnerDiv>
-        <ItemImage src={mainImg} alt="product" />
-        <FlexDiv>
-          <img src={Img1} alt="product" />
-          <img src={Img2} alt="product" />
-          <img src={Img3} alt="product" />
-          <img src={Img4} alt="product" />
-          <img src={Img5} alt="product" />
-          <img src={Img6} alt="product" />
-        </FlexDiv>
+        <ItemImage src={item.images} alt="product" />
       </InnerDiv>
       <InnerDiv>
         <Paragraph className="green">
           <FcCheckmark /> In stock
         </Paragraph>
         <ItemTitle>
-          Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
+          {item.name}
         </ItemTitle>
         <FlexDiv className="detail">
           <Rate src={stars4} alt="rate" />
