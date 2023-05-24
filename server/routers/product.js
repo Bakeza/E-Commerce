@@ -16,5 +16,6 @@ router.patch(
 );
 router.get("/", errorHandler(productController.getProducts));
 router.get("/search", errorHandler(productController.getByNameProducts));
+router.get("/item", errorHandler(productController.getProductById));
 
 module.exports = router;
