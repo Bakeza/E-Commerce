@@ -22,7 +22,7 @@ export const PATHS = {
   HOME: "/",
   SELECTEDITEMS: "/selectedItems",
   ELECTRONICS: "/electronics",
-  ITEM: "/item",
+  ITEM: "/electronics/:id",
   CART: "/cart",
   SIGNUP: "/signup",
   LOGIN: "/login",

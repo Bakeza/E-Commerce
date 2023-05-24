@@ -8,12 +8,12 @@ import ItemPath from "../../Components/ItemPath";
 import ItemFilter from "../../Components/ItemFilter";
 
 import { RecommendedContaner } from "../../Sections/Recommended";
-import axios from "axios";
+import Axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Electronics({ searchValue }) {
   const [product, setProduct] = useState([]);
 
-  // const [addProduct,setAddProduct]=useState([]);
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await axios.get(`${process.env.REACT_APP_API}/product`);
@@ -22,15 +22,23 @@ export default function Electronics({ searchValue }) {
     };
     getProducts();
   }, []);
+
   return (
     <>
-      {console.log(searchValue)}
       <Container>
         <ItemPath />
         <PageLayout>
           <SideBar />
           <PageContent>
             <ItemFilter electronic />
+            <RecommendedContaner>
+              {product.map((item) => (
+                <Link to={`/electronics/${item.id}`}>
+                <ElectronicsItem key={item.id} {...{ item }} />
+                </Link>
+              ))}
+            </RecommendedContaner>
+
             {searchValue && (
               <RecommendedContaner>
                 {searchValue.map((item) => (
