@@ -18,13 +18,16 @@ export const Country = styled.img`
   padding-left: 0.5rem;
 `;
 
-export default function Header() {
+export default function Header({ getProductByName }) {
   const { pathname } = useLocation();
-  const currnetUser = pathname.includes("/cart")||pathname.includes("/profile")||pathname.includes("/controlPanel");
+  const currnetUser =
+    pathname.includes("/cart") ||
+    pathname.includes("/profile") ||
+    pathname.includes("/controlPanel");
 
   return (
     <>
-      <NavBar />
+      <NavBar getProductByName={getProductByName} />
       {!currnetUser && (
         <Navigation>
           <NavUl>

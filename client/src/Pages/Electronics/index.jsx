@@ -8,25 +8,23 @@ import ItemPath from "../../Components/ItemPath";
 import ItemFilter from "../../Components/ItemFilter";
 
 import { RecommendedContaner } from "../../Sections/Recommended";
-import { ElectronicsItems } from "../../mock/data";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Electronics() {
+export default function Electronics({ searchValue }) {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data }= await Axios.get(`${process.env.REACT_APP_API}/product`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API}/product`);
       setProduct(data.data.product);
-      console.log(data);
+      console.log(data.data.product);
     };
     getProducts();
   }, []);
 
   return (
     <>
-      {console.log(product)}
       <Container>
         <ItemPath />
         <PageLayout>
@@ -40,6 +38,21 @@ export default function Electronics() {
                 </Link>
               ))}
             </RecommendedContaner>
+
+            {searchValue && (
+              <RecommendedContaner>
+                {searchValue.map((item) => (
+                  <ElectronicsItem key={item.id} {...{ item }} />
+                ))}
+              </RecommendedContaner>
+            )}
+            {!searchValue && (
+              <RecommendedContaner>
+                {product.map((item) => (
+                  <ElectronicsItem key={item.id} {...{ item }} />
+                ))}
+              </RecommendedContaner>
+            )}
           </PageContent>
         </PageLayout>
       </Container>

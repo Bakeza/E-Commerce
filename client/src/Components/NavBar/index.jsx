@@ -43,11 +43,11 @@ const NavName = styled.p`
   padding-top: 0.3rem;
   color: ${(props) => props.theme.pallet.secondaryText};
 `;
-export default function NavBar() {
+export default function NavBar({ getProductByName }) {
   return (
     <Navigation>
       <Logo />
-      <Search />
+      <Search getProductByName={getProductByName} />
       <NavUl>
         <NavItem>
           <Toggle />
@@ -56,13 +56,13 @@ export default function NavBar() {
           <Link to={PATHS.ITEM}>
             <img src={MessageSrc} alt="Messgae" />
           </Link>
-            <NavName>Message</NavName>
+          <NavName>Message</NavName>
         </NavItem>
         <NavItem>
           <Link to={PATHS.WISHLIST}>
             <img src={HeartSrc} alt="Heart" />
           </Link>
-            <NavName>WishList</NavName>
+          <NavName>WishList</NavName>
         </NavItem>
         <NavItem>
           <Link to={PATHS.CART}>
