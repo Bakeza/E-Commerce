@@ -17,7 +17,7 @@ const authMiddleware = async (req, res, next) => {
     if (!decoded) {
       throw new Error("Unauthorized");
     }
-    req.user = await authController.getUserById(decoded.id);
+    req.user = await authController.getUserById(decoded._id);
     next();
   } catch (err) {
     return new CustomEvent(500, "Internal server Error");
