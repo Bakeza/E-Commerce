@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const authController = require("../models/User.js");
+const CustomError = require("../helpers/CustomError.js");
 
 const authMiddleware = async (req, res, next) => {
   try {
@@ -20,7 +21,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = await authController.getUserById(decoded._id);
     next();
   } catch (err) {
-    return new CustomEvent(500, "Internal server Error");
+    return new CustomError(500, "Internal server Error");
   }
 };
 module.exports = authMiddleware;
