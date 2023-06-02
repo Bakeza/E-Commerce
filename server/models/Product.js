@@ -114,6 +114,9 @@ class Product {
       }
     });
   }
+  async getAllproducts(){
+
+  }
 }
 
 const productModel = new Product();

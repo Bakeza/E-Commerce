@@ -9,10 +9,11 @@ import ItemFilter from "../../Components/ItemFilter";
 import { RecommendedContaner } from "../../Sections/Recommended";
 import Axios from "axios";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Spinner = styled.div`
   border: 1.5rem solid white;
-  border-top: 1.5rem #3d8bfd  solid;
+  border-top: 1.5rem #3d8bfd solid;
   border-radius: 50%;
   height: 10rem;
   width: 10rem;
@@ -29,7 +30,7 @@ export const Spinner = styled.div`
     }
   }
 `;
-export default function Electronics() {
+export default function Electronics({ searchValue }) {
   const [product, setProduct] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
@@ -38,6 +39,7 @@ export default function Electronics() {
     };
     getProducts();
   }, []);
+
   return (
     <>
       <Container>
@@ -51,10 +53,27 @@ export default function Electronics() {
                 <Spinner />
               ) : (
                 product.map((item) => (
-                  <ElectronicsItem key={item.id} {...{ item }} />
+                  <Link to={`/electronics/${item.id}`}>
+                    <ElectronicsItem key={item.id} {...{ item }} />
+                  </Link>
                 ))
               )}
             </RecommendedContaner>
+
+            {searchValue && (
+              <RecommendedContaner>
+                {searchValue.map((item) => (
+                  <ElectronicsItem key={item.id} {...{ item }} />
+                ))}
+              </RecommendedContaner>
+            )}
+            {!searchValue && (
+              <RecommendedContaner>
+                {product.map((item) => (
+                  <ElectronicsItem key={item.id} {...{ item }} />
+                ))}
+              </RecommendedContaner>
+            )}
           </PageContent>
         </PageLayout>
       </Container>

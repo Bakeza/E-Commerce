@@ -1,7 +1,5 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 
-// import { API_URL } from "./../../config/api";
-
 import { DataItem, InfoConatiner, ProfileContainer } from "./style";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
@@ -11,16 +9,9 @@ import { UserContext } from "../../Context/UserContext";
 import { Spinner } from "../../global/style";
 
 export default function Profile() {
-  // const [userData, setUserData] = useState({
-  //   userName: "xsasxax",
-  //   email: "",
-  //   admin: "",
-  //   isLoading: false,
-  // });
   const [isAdmin, setIsAdmin] = useState(false);
   const { userData, setUserData } = useContext(UserContext);
 
-  console.log(" userData", userData.name);
   useEffect(() => {
     checkIsAdmin();
   }, []);

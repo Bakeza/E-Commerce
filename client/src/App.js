@@ -16,6 +16,7 @@ import { UserProvider } from "./Context/UserContext";
 
 function App() {
   const [theme, setTheme] = useState(lightTheme);
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {

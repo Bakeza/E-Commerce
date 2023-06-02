@@ -7,16 +7,14 @@ import ItemCard from "../../Components/ItemCard";
 import SideBar from "../../Components/SideBar";
 import ItemPath from "../../Components/ItemPath";
 import ItemFilter from "../../Components/ItemFilter";
-import { SelectedItem } from "../../mock/data";
-import { Axios } from "axios";
+import axios from "axios";
 
-export default function SelectedItems() {
+export default function SelectedItems({ }) {
   const [product, setProduct] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
-      const {data} = await Axios.get(`${process.env.REACT_APP_API}/product`);
+      const {data} = await axios.get(`${process.env.REACT_APP_API}/product`);
       setProduct(data.data.product);
-      console.log(data);
     };
     getProducts();
   }, []);
