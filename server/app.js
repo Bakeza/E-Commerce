@@ -14,7 +14,11 @@ class App {
   #initMiddleware() {
     this.app = express();
     this.app.use([
-      cors(),
+      cors({
+        origin: "http://localhost:3000/",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type", "Authorization",],
+      }),
       compression(),
       express.urlencoded({ extended: false }),
       express.json(),
